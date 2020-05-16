@@ -1,0 +1,12 @@
+1、	进入容器
+使用以下命令进入一个已经在运行的容器
+$ docker ps  （查看当前运行的所有容器）
+注意：$ docker ps -a （查看所有容器，包括正在运行与关闭的容器）
+$docker exec –it 775c7c9ee1e1 /bin/bash （进入ID为775c7c9ee1e1的容器）
+
+2、	启动容器
+docker run -it -d -p 7899:8080 consol/tomcat-7.0
+其中：
+-t 选项让Docker分配一个伪终端（ pseudo-tty）并绑定到容器的标准输入上， -i 则让容器的标准输入保持打开。
+-p 表示端口号，前一个7890是指我们访问tomcat时的端口号（宿主机端口），
+后一个8080是tomcat启动的一个容器在docker中运行的端口号，指定端口号为了更明确的访问tomcat。
