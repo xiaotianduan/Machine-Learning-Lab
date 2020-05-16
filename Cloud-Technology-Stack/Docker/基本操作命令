@@ -10,3 +10,30 @@ docker run -it -d -p 7899:8080 consol/tomcat-7.0
 -t 选项让Docker分配一个伪终端（ pseudo-tty）并绑定到容器的标准输入上， -i 则让容器的标准输入保持打开。
 -p 表示端口号，前一个7890是指我们访问tomcat时的端口号（宿主机端口），
 后一个8080是tomcat启动的一个容器在docker中运行的端口号，指定端口号为了更明确的访问tomcat。
+
+3、进入容器
+a)	通过ssh登陆进容器
+b)	docker  exec  -it  容器ID/容器名称 /bin/bash	
+c)	docker  attach  容器ID/容器名称
+attach是将当前terminal 的标准输入、输出、错误附加到制定的docker容器，发送 CTRL-c 信号(输入) 直接会终止容器 运行。exec相当于在docker 里面新开了一个bash 进程，在该终端可以通过命令和容器交互。
+
+4、查看镜像的详细信息
+docker  inspect  web（容器名称为web）
+
+5、退出镜像
+Ctrl+P+Q（可使得容器保持在后台运行）
+
+6、查看容器端口映射
+docker port 容器name/ID
+
+7、查看容器进程信息
+docker top容器name/ID （查看容器中运行的进程信息）
+
+8、	Docker对操作系统支持情况
+因为docker依赖于Linux内核Namespace和Cgroups，故本质来说docker只能运行在Linux系统中，且只能运行Linux系统容器/镜像。
+
+在Windows下安装Docker，需要用到Boot2Docker for Windows工具，其包括
+1、	Boot2Docker Liux ISO  //为docker定制的虚拟机镜像，提供docker运行环境
+2、	Vitualbox  //虚拟机，Windows下docker需要安装在虚拟机VM中
+3、	MSYS-git  //shell运行环境
+4、	管理工具
