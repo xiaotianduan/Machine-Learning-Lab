@@ -1,0 +1,18 @@
+1、docker中无法访问web服务问题
+
+由于是在windows7上安装docker，所以我用的是Docker Toolbox
+今天试了试Docker，搞了个容器，
+想在容器里面运行一个静态网页，于是在容器里面下载了nginx，下载了vim
+然后修改了nginx的配置文件
+我ctrl+p q挂起容器后台运行
+一切顺风顺水。。。。
+然后我兴高采烈的运行  curl http://127.0.0.1:32768 (映射到的我本机的端口号)
+
+报出了如下错误：
+curl: (7) Failed to connect to 127.0.0.1 port 32768: Connection refused
+WTF？？？ 吓得我赶紧检查了一遍容器是否在运行，nginx配置文件是否修改正确，网页在不在，都在啊。。。。奇怪了
+
+于是我去stackoverflow搜了一下我的问题：
+
+这俩老外几里哇啦说了一堆大致意思是 你要把ip换成（docker-machine ip default）的ip，因为我用的我是docker Toolbox。。。
+所以应该用虚拟机的ip地址，于是通过命令docker-machine ls查了一下，是192.168.99.100，再用这个试了一次，ok！
